@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour {
 
     public float speed = 10;
 
+    private int score = 0;
+
     private Rigidbody2D rigidbody;
     private float moveHorizontal;
     private float moveVertical;
@@ -25,4 +27,12 @@ public class PlayerController : MonoBehaviour {
 
         rigidbody.AddForce(movement * speed);
 	}
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("PickUp"))
+        {
+            col.gameObject.SetActive(false);
+        }
+    }
 }
