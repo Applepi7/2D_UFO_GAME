@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public float speed = 10;
+    public static PlayerController instance;
 
-    private int score = 0;
+    public float speed = 10;
+    public int score = 0;
 
     private Rigidbody2D rigidbody;
     private float moveHorizontal;
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        instance = this;
         rigidbody = GetComponent<Rigidbody2D>();
 	}
 	
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour {
         if (col.gameObject.CompareTag("PickUp"))
         {
             col.gameObject.SetActive(false);
+            score += 1;
         }
     }
 }
